@@ -16,8 +16,6 @@ php:
 # Declare which versions of WordPress to test against.
 # Also declare whether or not to test in Multisite.
 env:
-    - WP_VERSION=latest WP_MULTISITE=0
-    - WP_VERSION=latest WP_MULTISITE=1
     - WP_VERSION=4.3 WP_MULTISITE=0
     - WP_VERSION=4.3 WP_MULTISITE=1
     - WP_VERSION=4.2 WP_MULTISITE=0
