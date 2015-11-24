@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Plugin Template
- * Plugin URI: https://github.com/matt-bernhardt/wp-plugin-template
+ * Plugin URI: https://github.com/MITLibraries/wp-plugin-template
  * Description: This is a sample plugin
  * Version: 0.1
  * Author: Matt Bernhardt
@@ -10,7 +10,7 @@
  *
  * @package Plugin Template
  * @author Matt Bernhardt
- * @link https://github.com/matt-bernhardt/wp-plugin-template
+ * @link https://github.com/MITLibraries/wp-plugin-template
  */
 
 /**
