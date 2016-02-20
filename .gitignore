@@ -14,3 +14,5 @@ wp-content/wp-cache-config.php
 
 *.sublime-project
 *.sublime-workspace
+
+/vendor/

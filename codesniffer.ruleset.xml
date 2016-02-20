@@ -6,6 +6,9 @@
 	<!-- Set a description for this ruleset. -->
 	<description>A custom set of code standard rules to check for WordPress plugins.</description>
 
+	<!-- Probably need to exclude the libs directory (externally-written code) -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
 	<!-- Include the WordPress ruleset, with exclusions. -->
 	<rule ref="WordPress">
 		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
