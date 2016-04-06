@@ -44,9 +44,9 @@ class Plugin_Template extends WP_Widget {
 	function __construct() {
 		$widget_ops = array(
 			'classname' => 'plugin-template-widget',
-			'description' => __( 'Template class for plugin','plugintemplate' ),
+			'description' => __( 'Template class for plugin', 'plugintemplate' ),
 		);
-		parent::__construct( 'plugin-template', __( 'Base Widget Template','plugintemplate' ), $widget_ops );
+		parent::__construct( 'plugin-template', __( 'Base Widget Template', 'plugintemplate' ), $widget_ops );
 	}
 
 	/**
@@ -98,5 +98,3 @@ function register_extended_widget() {
 	register_widget( 'Plugin_Template_Extension' );
 }
 add_action( 'widgets_init', 'register_extended_widget' );
-
-?>
