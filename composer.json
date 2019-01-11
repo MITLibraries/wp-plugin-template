@@ -1,0 +1,13 @@
+{
+    "name": "MITLibraries/wp-plugin-template",
+    "description": "A WordPress plugin template",
+    "type": "wordpress-plugin",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Matt Bernhardt",
+            "email": "mjbernha@mit.edu"
+        }
+    ],
+    "require": {}
+}
