@@ -43,7 +43,7 @@ before_script:
   - export PHPCS_DIR=/tmp/phpcs
   # Define WordPress Coding Standards
   - export WPCS_DIR=/tmp/wpcs
-  - export WPCS_BRANCH=1.2.0
+  - export WPCS_BRANCH=1.2.1
   # Install WordPress Coding Standards (master branch, not develop).
   - if [[ "$SNIFF" == "1" ]]; then git clone -b $WPCS_BRANCH https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $WPCS_DIR; fi
   # Install CodeSniffer for WordPress Coding Standards checks (pre 3.x version).
