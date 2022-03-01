@@ -3,7 +3,7 @@
  * Plugin Name: Plugin Template
  * Plugin URI: https://github.com/MITLibraries/wp-plugin-template
  * Description: This is a sample plugin
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Matt Bernhardt
  * Author URI: https://github.com/matt-bernhardt
  * License: GPLv2
@@ -41,12 +41,12 @@ class Plugin_Template extends WP_Widget {
 	/**
 	 * Constructor
 	 */
-	function __construct() {
+	public function __construct() {
 		$widget_ops = array(
 			'classname' => 'plugin-template-widget',
-			'description' => __( 'Template class for plugin','plugintemplate' ),
+			'description' => __( 'Template class for plugin', 'plugintemplate' ),
 		);
-		parent::__construct( 'plugin-template', __( 'Base Widget Template','plugintemplate' ), $widget_ops );
+		parent::__construct( 'plugin-template', __( 'Base Widget Template', 'plugintemplate' ), $widget_ops );
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Plugin_Template extends WP_Widget {
 	 * @param array $instance See WP_Widget in Developer documentation.
 	 * @link https://developer.wordpress.org/reference/classes/wp_widget/
 	 */
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		$args = null;
 		$instance = null;
 		echo '<p>This is my widget.</p>';
@@ -84,7 +84,7 @@ class Plugin_Template_Extension extends Plugin_Template {
 	 * @param array $args no idea.
 	 * @param array $instance no idea.
 	 */
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		$args = null;
 		$instance = null;
 		echo '<p>This is my <em>extended</em> widget.</p>';
@@ -98,5 +98,3 @@ function register_extended_widget() {
 	register_widget( 'Plugin_Template_Extension' );
 }
 add_action( 'widgets_init', 'register_extended_widget' );
-
-?>
