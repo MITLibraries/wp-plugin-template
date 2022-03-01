@@ -3,7 +3,7 @@
  * Plugin Name: Plugin Template
  * Plugin URI: https://github.com/MITLibraries/wp-plugin-template
  * Description: This is a sample plugin
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Matt Bernhardt
  * Author URI: https://github.com/matt-bernhardt
  * License: GPLv2
