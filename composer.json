@@ -1,13 +1,24 @@
 {
-    "name": "MITLibraries/wp-plugin-template",
+    "name": "mitlibraries/wp-plugin-template",
     "description": "A WordPress plugin template",
     "type": "wordpress-plugin",
-    "license": "GPLv2",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Matt Bernhardt",
             "email": "mjbernha@mit.edu"
         }
     ],
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^2.3",
+        "squizlabs/php_codesniffer": "^3.6"
+    },
+    "scripts": {
+        "lint": [
+            "composer validate --no-check-publish --strict",
+            "./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+            "./vendor/bin/phpcs -psvn . --standard=codesniffer.full.xml"
+        ]
+    }
 }

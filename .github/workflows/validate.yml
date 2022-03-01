@@ -1,0 +1,41 @@
+name: Supported PHP
+on: push
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  composer_validate:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-versions: ['7.2', '7.4']
+
+    env:
+      WPCS_PATH: "$GITHUB_WORKSPACE/vendor/wp-coding-standards/wpcs"
+
+    steps:
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+
+    - uses: actions/checkout@v2
+
+    - name: Syntax check PHP before dependencies
+      run: find . -path ./libs -prune -o \( -name '*.php' \) -exec php -lf {} \;
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Install WordPress coding standards
+      run: ./vendor/bin/phpcs --config-set installed_paths ${{env.WPCS_PATH}}
+
+    # We only apply the security-focused tests using GitHub Actions. To run the full set of tests, use `composer lint`
+    # on the command line.
+    - name: Check code against WordPress security standards
+      run: ./vendor/bin/phpcs -psvn . --standard=./codesniffer.security.xml --extensions=php
