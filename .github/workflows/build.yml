@@ -1,0 +1,72 @@
+name: Build a release for implementing sites
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-dev --no-progress
+
+    - name: Store build result as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifact
+        path: |
+          src
+          templates
+          vendor
+          *.php
+
+  commit:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: build
+
+    - name: Retrieve build artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: build-artifact
+
+    - name: Stage changed files for commit
+      run: |
+        git config --local user.email 'action@github.com'
+        git config --local user.name 'GitHub Action'
+        git add .
+        git status
+
+    - name: Force-add built content (necessary because .gitignore)
+      run: |
+        git add -f vendor/*
+
+    - name: Commit changes
+      run: |
+        git commit -m 'Updates plugin including built assets'
+
+    - name: Push changes back to origin
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: build
